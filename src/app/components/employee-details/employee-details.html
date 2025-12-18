@@ -1,0 +1,59 @@
+
+<div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+  <h2 class="text-2xl font-semibold text-slate-800 mb-6">Enter Your Details</h2>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+    <div>
+      <label for="employeeId" class="block text-sm font-medium text-slate-700 mb-1">Employee ID</label>
+      <input id="employeeId" type="text" formControlName="employeeId" placeholder="e.g. EMP123"
+             class="w-full px-4 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition">
+      @if (employeeForm.get('employeeId')?.invalid && employeeForm.get('employeeId')?.touched) {
+        <p class="text-red-500 text-xs mt-1">Employee ID is required and can only contain letters and numbers.</p>
+      }
+    </div>
+
+    <div>
+      <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+      <input id="name" type="text" formControlName="name" placeholder="e.g. Alex Doe"
+             class="w-full px-4 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition">
+      @if (employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched) {
+        <p class="text-red-500 text-xs mt-1">Name is required and should be at least 3 characters.</p>
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label for="gender" class="block text-sm font-medium text-slate-700 mb-1">Gender</label>
+        <select id="gender" formControlName="gender"
+                class="w-full px-4 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition">
+          <option value="" disabled>Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+         @if (employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched) {
+          <p class="text-red-500 text-xs mt-1">Please select a gender.</p>
+        }
+      </div>
+
+      <div>
+        <label for="maritalStatus" class="block text-sm font-medium text-slate-700 mb-1">Marital Status</label>
+        <select id="maritalStatus" formControlName="maritalStatus"
+                class="w-full px-4 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition">
+          <option value="" disabled>Select Status</option>
+          <option value="single">Single</option>
+          <option value="married">Married</option>
+        </select>
+        @if (employeeForm.get('maritalStatus')?.invalid && employeeForm.get('maritalStatus')?.touched) {
+          <p class="text-red-500 text-xs mt-1">Please select a marital status.</p>
+        }
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="employeeForm.invalid"
+              class="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition disabled:bg-slate-400 disabled:cursor-not-allowed">
+        View My Leaves
+      </button>
+    </div>
+  </form>
+</div>

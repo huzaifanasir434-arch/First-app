@@ -37,3 +37,4 @@ export class SwapCasePipe implements PipeTransform {
       .join(' ');
   }
 }
+  

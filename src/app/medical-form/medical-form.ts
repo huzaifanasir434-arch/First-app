@@ -7,8 +7,6 @@ import { NameFormatDirective } from '../../directives/name-format';
 import { CustomInput } from '../custom-input/custom-input';
 // import { SwapCasePipe } from '../pipes/swap-case-pipe';
 
-
-
 @Component({
   selector: 'app-medical-form',
   standalone: true,

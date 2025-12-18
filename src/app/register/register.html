@@ -1,6 +1,48 @@
-<h2>Register</h2>
+<form (ngSubmit)="submit()" class="space-y-4">
+  <h2>Register</h2>
 
-<form (ngSubmit)="submit()">
+  <label>Name:</label>
+  <input type="text" [(ngModel)]="name" name="name" required>
+
+  <label>Email:</label>
+  <input type="email" [(ngModel)]="email" name="email" required>
+
+  <label>Password:</label>
+  <input type="password" [(ngModel)]="password" name="password" required>
+
+  <!-- Employee Fields -->
+  <label>Employee ID:</label>
+  <input type="text" [(ngModel)]="employeeId" name="employeeId" required>
+
+  <label >Gender:</label>
+  <select class="slet" [(ngModel)]="gender" name="gender" required>
+    <option value="" disabled>Select Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+
+  <label >Marital Status:</label>
+  <select class="slet" [(ngModel)]="maritalStatus" name="maritalStatus" required>
+    <option value="" disabled>Select Status</option>
+    <option value="single">Single</option>
+    <option value="married">Married</option>
+  </select>
+
+  <button type="submit">Create Account</button>
+
+  <p>
+    Already have an account?
+    <a routerLink="/login">Login</a>
+  </p>
+</form>
+
+
+<!-- ............................................................... -->
+
+
+
+<!-- <form (ngSubmit)="submit()">
+  <h2>Register</h2>
   <label>Name:</label>
   <input type="text" [(ngModel)]="name" name="name" required>
 
@@ -11,8 +53,9 @@
   <input type="password" [(ngModel)]="password" name="password" required>
 
   <button type="submit">Create Account</button>
-</form>
 
-<p>Already have an account?
-  <a routerLink="/login">Login</a>
-</p>
+  <p>
+    Already have an account?
+    <a routerLink="/login">Login</a>
+  </p>
+</form> -->

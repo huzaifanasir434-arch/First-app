@@ -1,0 +1,81 @@
+
+<div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+
+  <div class="flex justify-between items-start mb-6">
+    <div>
+      <h2 class="text-xl sm:text-2xl font-semibold text-slate-800">Welcome, {{ employee().name }}!</h2>
+      <p class="text-slate-500">Here's your leave summary.</p>
+    </div>
+    <button (click)="onReset()" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium transition">
+      Change User
+    </button>
+  </div>
+
+  <!-- Leave Balances -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+    @for (balance of leaveBalances(); track balance.type) {
+      @if(balance.applicable) {
+        <div class="border border-slate-200 rounded-lg p-4 text-center transition hover:shadow-md hover:border-indigo-300">
+          <div class="text-2xl mb-1">{{ balance.icon }}</div>
+          <h3 class="font-semibold text-slate-700 text-sm">{{ balance.type }}</h3>
+          @if (balance.total !== Infinity) {
+            <p class="text-2xl font-bold text-indigo-600">{{ balance.remaining }}<span class="text-lg font-medium text-slate-500 ml-1">{{ balance.unit === 'hours' ? 'hrs' : '' }}</span></p>
+            <p class="text-xs text-slate-500">{{ balance.total }} Total</p>
+          } @else {
+            <p class="text-2xl font-bold text-slate-600">-</p>
+             <p class="text-xs text-slate-500">As Needed</p>
+          }
+        </div>
+      }
+    }
+  </div>
+
+  <!-- Leave Application Form -->
+  <div class="border-t border-slate-200 pt-6">
+    <h3 class="text-lg font-semibold text-slate-800 mb-4">Apply for Leave</h3>
+    <form [formGroup]="leaveForm" (ngSubmit)="applyForLeave()" class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+
+      <div class="col-span-1">
+        <label for="leaveType" class="block text-sm font-medium text-slate-700 mb-1">Leave Type</label>
+        <select id="leaveType" formControlName="leaveType"
+                class="w-full px-4 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition">
+          <option value="" disabled>Select Type...</option>
+          @for(leave of applicableLeaveTypes(); track leave.type) {
+            <option [value]="leave.type">{{ leave.type }} ({{ leave.remaining }} {{ leave.unit === 'hours' ? 'hrs' : 'days' }} left)</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-span-1">
+        <label for="duration" class="block text-sm font-medium text-slate-700 mb-1">Number of {{ selectedLeaveUnit() === 'hours' ? 'Hours' : 'Days' }}</label>
+        <input id="duration" type="number" formControlName="duration" min="1"
+               class="w-full px-4 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition">
+      </div>
+
+      <div class="col-span-1">
+        <button type="submit" [disabled]="leaveForm.invalid"
+                class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition disabled:bg-slate-400 disabled:cursor-not-allowed">
+          Apply
+        </button>
+      </div>
+    </form>
+    @if (leaveForm.get('duration')?.hasError('max')) {
+      @if(selectedLeaveBalance()?.type === 'Short Leave') {
+        <p class="text-red-500 text-xs mt-2 text-center md:text-left">
+            You can apply for a maximum of 3 hours of Short Leave at a time, and you have {{ selectedLeaveBalance()?.remaining }} total hours left.
+        </p>
+      } @else {
+        <p class="text-red-500 text-xs mt-2 text-center md:text-left">
+            You only have {{ selectedLeaveBalance()?.remaining }} days of this leave type remaining.
+        </p>
+      }
+    }
+  </div>
+
+  <!-- Notification -->
+  @if (notification(); as notif) {
+    <div [class]="'mt-4 p-4 rounded-md text-sm ' + (notif.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800')">
+      {{ notif.message }}
+    </div>
+  }
+</div>

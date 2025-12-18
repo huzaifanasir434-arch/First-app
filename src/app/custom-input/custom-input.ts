@@ -11,7 +11,7 @@ import { forwardRef } from '@angular/core';
     (blur)="onTouched()"
     />
     `,
-    
+
   standalone: true,
   styles: [`
     input {
@@ -61,12 +61,24 @@ export class CustomInput implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  // When user types in the input
+  // // When user types in the input (allows all characters)
+  // onInput(event: any) {
+  //   this.value = event.target.value;
+
+  //   // Notify Angular form about the change
+  //   this.onChange(this.value);
+
+   /** ⛔ BLOCK NON-NUMBERS → ✓ ALLOW ONLY DIGITS */
   onInput(event: any) {
-    this.value = event.target.value;
+    let inputValue = event.target.value;
 
-    // Notify Angular form about the change
-    this.onChange(this.value);
+    // Remove everything that is NOT a number
+    inputValue = inputValue.replace(/[^0-9]/g, '');
 
-      }
+    this.value = inputValue;
+    event.target.value = inputValue;
+
+    this.onChange(this.value);  // update Angular form
+
+  }
 }

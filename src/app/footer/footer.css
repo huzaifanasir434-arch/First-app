@@ -1,17 +1,43 @@
 .footer {
-  width: 100%;
-  text-align: center;
-  padding: 3px;
-  background: #c49898;
-  color: rgb(26, 17, 17);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  border-radius: 20px;
+  background: linear-gradient(
+    to right,
+    #0f172a,
+    #1e293b,
+    #0f172a
+  );
+  color: #e5e7eb;
+  padding: 16px 20px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.35);
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
 
-.footer p {
-
+.footer-content h3 {
   margin: 0;
+  font-size: 16px;
+  color: #5eead4; /* teal */
+}
+
+.footer-content p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Animation (same as claim form) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,11 +1,105 @@
-
+/* PAGE WRAPPER */
 .card-container {
-  height: 15vh;               /* Full screen height */
+  min-height: calc(100vh - 120px);
   display: flex;
-  /* justify-content: center;     Center horizontally */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 24px;
+  padding: 40px 20px;
+
+  font-family: 'Inter', sans-serif;
+
+  background-color: #0f172a;
+  background-image:
+
+       radial-gradient(circle at 100% 0%, #22758f 0%, #0f172a 40%),
+       radial-gradient(circle at 0% 100%, #6b21a8 0%, #0f172a 40%);
+}
+
+/* CARD */
+.card {
+  width: 240px;
+  min-height: 150px;
+
+  padding: 20px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  text-align: center;
+  cursor: pointer;
+
+  color: #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* TITLE */
+.card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* DESCRIPTION */
+.card p {
+  font-size: 14px;
+  color: #cbd5f5;
+}
+
+/* HOVER EFFECT */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .card {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+
+
+
+
+
+/* .................................................................................... */
+
+/*
+.card-container {
+  height: 15vh;
+  display: flex;
+
   margin-top: 50px;
-  align-items: center;         /* Center vertically */
-  background: #f5f5f5;
+  align-items: center;
+  background: #d38e8e;
   gap: 20px;
 }
 
@@ -14,7 +108,7 @@
   padding: 10px;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-  background: white;
+  background: rgb(179, 151, 151);
   text-align: center;
   cursor: pointer;
   transition: 0.3s;
@@ -23,5 +117,5 @@
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
+} */
 

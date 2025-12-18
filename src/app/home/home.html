@@ -1,16 +1,32 @@
-<!-- <h2>Home Page</h2> -->
 <div class="card-container">
   <div class="card" (click)="goToMedicalForm()">
     <h2>Medical Form</h2>
-    <p>Click to fill out the form</p>
+    <p>Fill out a medical form</p>
   </div>
+
   <div class="card" (click)="goToClaimForm()">
     <h2>Claim Form</h2>
-    <p>Click to fill out the form</p>
+    <p>Submit insurance claims</p>
   </div>
-  <a (click)="goToViewClaim()" class="card">View Medical Saved Claims</a>
-  <a (click)="goToFormArray()" class="card">Medical Patients Form (FormArray)</a>
+
+    <!-- <div class="card" (click)="goToLeaveManagement()">
+    <h2>Leave Form</h2>
+    <p>View Leaves</p>
+  </div> -->
+
+  <div class="card" (click)="goToEmpap()">
+    <h2>LeaveForm</h2>
+    <p>view Leaves</p>
+  </div>
+
+  <div class="card" (click)="goToViewClaim()">
+    <h2>Saved Claims</h2>
+    <p>View submitted medical claims</p>
+  </div>
+
+  <div class="card" (click)="goToFormArray()">
+    <h2>Patients Form</h2>
+    <p>Manage multiple patients</p>
+  </div>
+
 </div>
-<!-- <app-medical-form></app-medical-form> -->
-
-

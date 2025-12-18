@@ -1,3 +1,4 @@
+import { Employee } from '../models/employee.model';
 // import { Routes } from '@angular/router';
 
 // export const routes: Routes = [];
@@ -10,9 +11,12 @@ import { Contact } from './contact/contact';
 import { About } from './about/about';
 import { Home } from './home/home';
 import { MedicalForm } from './medical-form/medical-form';
-import { ClaimFormComponent } from './claim-form/claim-form';
+import { ClaimForm } from './claim-form/claim-form';
 import { ViewClaim } from './view-claim/view-claim';
 import { MedicalArray } from './form-array/form-array';
+// import { LeaveManagement } from './components/leave-management/leave-management';
+import { App } from './components/empap/empap';
+
 
 
 
@@ -39,16 +43,21 @@ export const routes: Routes = [
       },
       {
         path: 'claim-form',
-        component: ClaimFormComponent,
+        component: ClaimForm,
       },
       {
         path: 'view-claim',
         component: ViewClaim,
       },
-         {
-        path: 'view-claim',
-        component: ViewClaim,
+
+      {
+        path: 'empap',
+        component: App
       },
+      // {
+      //   path: 'lms',
+      //   component: LeaveManagement,
+      // },
       {
         path: 'form-array',
         component: MedicalArray,

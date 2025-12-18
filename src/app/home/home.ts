@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+
 // import { MedicalForm } from '../medical-form/medical-form';
 
 @Component({
@@ -30,6 +31,14 @@ export class Home {
    goToFormArray() {
     this.router.navigate(['/form-array']);
   }
+
+  goToEmpap(){
+    this.router.navigate(['/empap'])
+  }
+
+  // goToLeaveManagement() {
+  //   this.router.navigate(['/lms']);
+  // }
 
 
   logout() {
