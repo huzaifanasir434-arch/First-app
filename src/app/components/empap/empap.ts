@@ -1,13 +1,14 @@
 
 import { Component, ChangeDetectionStrategy, signal, OnInit } from '@angular/core';
-import { EmployeeDetails } from '../employee-details/employee.details';
+// import { EmployeeDetails } from '../employee-details/employee.details';
 import { LeaveManagement } from '../leave-management/leave-management';
 import { Employee } from '../../../models/employee.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './empapp.html',
-  imports: [EmployeeDetails, LeaveManagement],
+  // imports: [EmployeeDetails, LeaveManagement],
+  imports: [ LeaveManagement],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 

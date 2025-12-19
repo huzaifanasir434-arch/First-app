@@ -4,14 +4,22 @@
     <h1 class="text-4xl font-bold text-slate-900 tracking-tight">Leave Management Portal</h1>
     <p class="text-slate-600 mt-2">Manage your time off with ease.</p>
   </header>
-
-  <div class="w-full max-w-4xl mx-auto transition-all duration-500">
+<!-- <div class="w-full max-w-4xl mx-auto transition-all duration-500">
     @if (!employee()) {
       <app-employee-details (detailsSaved)="onEmployeeDetailsSaved($event)"></app-employee-details>
     } @else {
       <app-leave-management [employee]="employee()!" (reset)="onReset()"></app-leave-management>
     }
-  </div>
+  </div> -->
+
+   <div class="w-full max-w-4xl mx-auto transition-all duration-500">
+  @if (employee(); as emp) {
+  <app-leave-management
+    [employee]="emp"
+    (reset)="onReset()">
+  </app-leave-management>
+}
+</div>
 
   <footer class="mt-12 text-center text-slate-500 text-sm">
     <p>&copy; 2024 ACME Corp. All rights reserved.</p>

@@ -54,7 +54,7 @@ export class Register {
     localStorage.setItem('currentEmployee', JSON.stringify(employee));
 
     // 4️⃣ Go directly to Leave page
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 }
 
