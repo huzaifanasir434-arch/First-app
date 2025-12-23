@@ -11,8 +11,10 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClaimForm {
+
   claimForm: FormGroup;
   submissionState = signal<'idle' | 'success'>('idle');
+  totalAmount = signal(0);
   currentStep = signal(1);
   totalSteps = 2;
 
@@ -31,6 +33,7 @@ export class ClaimForm {
         relation: [''],
         sex: ['']
       }),
+
       claim: this.fb.group({
         clinicHospitalDoctor: [''],
         admissionFrom: [''],
@@ -76,6 +79,7 @@ export class ClaimForm {
   }
 
   onSubmit(): void {
+
     this.claimForm.markAllAsTouched();
     if (!this.claimForm.valid) {
       return;

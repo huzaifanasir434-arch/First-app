@@ -1,8 +1,4 @@
-import { Employee } from '../models/employee.model';
-// import { Routes } from '@angular/router';
-
-// export const routes: Routes = [];
-
+import { LoginGuard } from './auth/login.guard';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { Login } from './login/login';
@@ -17,15 +13,13 @@ import { MedicalArray } from './form-array/form-array';
 // import { LeaveManagement } from './components/leave-management/leave-management';
 import { App } from './components/empap/empap';
 
-
-
-
 export const routes: Routes = [
 
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch: 'full',
+
   },
 
   {
@@ -74,8 +68,8 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: Login
-
+    component: Login,
+    canActivate: [LoginGuard] // stop to go on /login
   },
   {
     path: 'register',
