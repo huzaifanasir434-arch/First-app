@@ -1,14 +1,20 @@
 
 <div class="view-wrapper">
-  <h1>Saved Claims</h1>
+  <h1 class=" text-amber-50 ">Saved Claims</h1>
 
 <div class="sdiv">
   <div class="controls">
     <button (click)="clearAll()" class="danger">Clear All</button>
   </div>
-
+<hr>
   <ul class="claims-list" *ngIf="savedClaims.length; else none">
     <li *ngFor="let c of savedClaims; let i = index">
+
+        <!-- Add buttons here -->
+  <div class="actions">
+    <button (click)="editClaim(i)" class="edit-btn">Edit</button>
+    <button (click)="deleteClaim(i)" class="delete-btn">Delete</button>
+  </div>
 
       <div class="left">
         <div class="name">
@@ -32,7 +38,7 @@
 
         <div><strong>Total Cost:</strong> {{ c.claim?.totalCost || '0' }}</div>
       </div>
-      <hr>
+
 
     </li>
   </ul>

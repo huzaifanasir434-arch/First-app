@@ -1,55 +1,94 @@
-<div class=" min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+<div class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
   <!-- <div class="flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8"> -->
 
-  <div class=" w-full max-w-4xl mx-auto">
-
+  <div class="w-full max-w-4xl mx-auto">
     <div class="text-center mb-8 animate-fadeInUp">
-      <h1 class="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">Health Guard Insurance</h1>
-      <p class="mt-2 text-lg text-slate-400">Please fill out the form below to submit your claim.</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
+        Health Guard Insurance
+      </h1>
+      <p class="mt-2 text-lg text-slate-400">
+        Please fill out the form below to submit your claim.
+      </p>
     </div>
 
     <div class="relative">
       @if (submissionState() === 'success') {
       <div
-        class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm flex flex-col items-center justify-center rounded-2xl z-20 animate-fadeInUp">
-        <svg class="w-24 h-24 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm flex flex-col items-center justify-center rounded-2xl z-20 animate-fadeInUp"
+      >
+        <svg
+          class="w-24 h-24 text-emerald-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
         </svg>
         <h2 class="mt-6 text-2xl font-semibold text-slate-100">Claim Submitted Successfully!</h2>
         <p class="mt-2 text-slate-300">Your form has been saved. The form will reset shortly.</p>
       </div>
       }
 
-      <form [formGroup]="claimForm" (ngSubmit)="onSubmit()"
+      <form
+        [formGroup]="claimForm"
+        (ngSubmit)="onSubmit()"
         class="bg-slate-800 p-6 sm:p-10 rounded-2xl shadow-xl transition-all duration-500 border border-slate-700"
-        [class.blur]="submissionState() === 'success'">
-
+        [class.blur]="submissionState() === 'success'"
+      >
         <!-- Stepper -->
-        <div class="flex justify-center items-center space-x-4 md:space-x-8 mb-10 animate-fadeInUp"
-          style="animation-delay: 0.1s;">
+        <div
+          class="flex justify-center items-center space-x-4 md:space-x-8 mb-10 animate-fadeInUp"
+          style="animation-delay: 0.1s"
+        >
           <div class="flex items-center space-x-2 cursor-pointer" (click)="goToStep(1)">
             <div
               class="w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300"
-              [class.bg-teal-500]="currentStep() >= 1" [class.text-white]="currentStep() >= 1"
-              [class.bg-slate-700]="currentStep() < 1" [class.text-slate-400]="currentStep() < 1">1</div>
+              [class.bg-teal-500]="currentStep() >= 1"
+              [class.text-white]="currentStep() >= 1"
+              [class.bg-slate-700]="currentStep() < 1"
+              [class.text-slate-400]="currentStep() < 1"
+            >
+              1
+            </div>
             <div>
-              <p class="font-semibold" [class.text-teal-500]="currentStep() >= 1"
-                [class.text-slate-300]="currentStep() < 1">Holder Info</p>
+              <p
+                class="font-semibold"
+                [class.text-teal-500]="currentStep() >= 1"
+                [class.text-slate-300]="currentStep() < 1"
+              >
+                Holder Info
+              </p>
               <p class="text-xs text-slate-500 hidden sm:block">Your personal details</p>
             </div>
           </div>
-          <div class="flex-auto border-t-2 transition-all duration-500" [class.border-purple-500]="currentStep() === 2"
-            [class.border-slate-700]="currentStep() < 2"></div>
+          <div
+            class="flex-auto border-t-2 transition-all duration-500"
+            [class.border-purple-500]="currentStep() === 2"
+            [class.border-slate-700]="currentStep() < 2"
+          ></div>
           <div class="flex items-center space-x-2 cursor-pointer" (click)="goToStep(2)">
             <div
               class="w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300"
-              [class.bg-purple-500]="currentStep() >= 2" [class.text-white]="currentStep() >= 2"
-              [class.bg-slate-700]="currentStep() < 2" [class.text-slate-400]="currentStep() < 2">2</div>
+              [class.bg-purple-500]="currentStep() >= 2"
+              [class.text-white]="currentStep() >= 2"
+              [class.bg-slate-700]="currentStep() < 2"
+              [class.text-slate-400]="currentStep() < 2"
+            >
+              2
+            </div>
             <div>
-              <p class="font-semibold" [class.text-purple-500]="currentStep() >= 2"
-                [class.text-slate-300]="currentStep() < 2">Claim Details</p>
+              <p
+                class="font-semibold"
+                [class.text-purple-500]="currentStep() >= 2"
+                [class.text-slate-300]="currentStep() < 2"
+              >
+                Claim Details
+              </p>
               <p class="text-xs text-slate-500 hidden sm:block">Information about claim</p>
             </div>
           </div>
@@ -57,153 +96,368 @@
 
         @if (currentStep() === 1) {
         <section class="animate-slideInRight" formGroupName="holder">
-          <h2 class="text-xl font-semibold text-slate-200 border-b border-slate-700 pb-3 mb-6 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-teal-500" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          <h2
+            class="text-xl font-semibold text-slate-200 border-b border-slate-700 pb-3 mb-6 flex items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 mr-3 text-teal-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              />
             </svg>
             Section A: Card Holder Information
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
             <div>
-              <label for="organization" class="font-medium text-slate-300 text-sm">Organization Name</label>
-              <input id="organization" type="text" formControlName="organization"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+              <label for="organization" class="font-medium text-slate-300 text-sm"
+                >Organization Name</label
+              >
+              <input
+                id="organization"
+                type="text"
+                formControlName="organization"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+              />
             </div>
             <div>
               <label for="hrEmpId" class="font-medium text-slate-300 text-sm">HR Emp. ID #</label>
-              <input id="hrEmpId" type="text" formControlName="hrEmpId"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+              <input
+                id="hrEmpId"
+                type="text"
+                formControlName="hrEmpId"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+              />
             </div>
             <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
               <div>
-                <label for="employeeName" class="font-medium text-slate-300 text-sm">Employee Name <span
-                    class="text-red-500">*</span></label>
-                <input id="employeeName" type="text" formControlName="employeeName"
+                <label for="employeeName" class="font-medium text-slate-300 text-sm"
+                  >Employee Name <span class="text-red-500">*</span></label
+                >
+                <input
+                  id="employeeName"
+                  type="text"
+                  formControlName="employeeName"
                   class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
-                  [class.border-red-500]="isInvalid('employeeName', 'holder')">
-                @if (isInvalid('employeeName', 'holder')) { <p class="text-red-500 text-xs mt-1">Employee name is
-                  required.</p> }
+                  [class.border-red-500]="isInvalid('employeeName', 'holder')"
+                />
+                @if (isInvalid('employeeName', 'holder')) {
+                <p class="text-red-500 text-xs mt-1">Employee name is required.</p>
+                }
               </div>
               <div>
-                <label for="designation" class="font-medium text-slate-300 text-sm">Designation</label>
-                <input id="designation" type="text" formControlName="designation"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                <label for="designation" class="font-medium text-slate-300 text-sm"
+                  >Designation</label
+                >
+                <input
+                  id="designation"
+                  type="text"
+                  formControlName="designation"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+                />
               </div>
             </div>
             <div class="md:col-span-2">
-              <label for="officeAddress" class="font-medium text-slate-300 text-sm">Office Address</label>
-              <input id="officeAddress" type="text" formControlName="officeAddress"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+              <label for="officeAddress" class="font-medium text-slate-300 text-sm"
+                >Office Address</label
+              >
+              <input
+                id="officeAddress"
+                type="text"
+                formControlName="officeAddress"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+              />
             </div>
             <div>
               <label for="contactNo" class="font-medium text-slate-300 text-sm">Contact No</label>
-              <input id="contactNo" type="text" formControlName="contactNo"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+              <input
+                id="contactNo"
+                type="text"
+                formControlName="contactNo"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+              />
             </div>
             <div>
-              <label for="patientName" class="font-medium text-slate-300 text-sm">Patient Name <span
-                  class="text-red-500">*</span></label>
-              <input id="patientName" type="text" formControlName="patientName"
+              <label for="patientName" class="font-medium text-slate-300 text-sm"
+                >Patient Name <span class="text-red-500">*</span></label
+              >
+              <input
+                id="patientName"
+                type="text"
+                formControlName="patientName"
                 class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
-                [class.border-red-500]="isInvalid('patientName', 'holder')">
-              @if (isInvalid('patientName', 'holder')) { <p class="text-red-500 text-xs mt-1">Patient name is required.
-              </p> }
+                [class.border-red-500]="isInvalid('patientName', 'holder')"
+              />
+              @if (isInvalid('patientName', 'holder')) {
+              <p class="text-red-500 text-xs mt-1">Patient name is required.</p>
+              }
             </div>
             <div>
               <label for="patientAge" class="font-medium text-slate-300 text-sm">Patient Age</label>
-              <input id="patientAge" type="number" formControlName="patientAge"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+              <input
+                id="patientAge"
+                type="number"
+                formControlName="patientAge"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+              />
             </div>
             <div>
               <label for="cnic" class="font-medium text-slate-300 text-sm">CNIC</label>
-              <input id="cnic" type="text" formControlName="cnic"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+              <input
+                id="cnic"
+                type="text"
+                formControlName="cnic"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+              />
             </div>
             <div>
               <label for="relation" class="font-medium text-slate-300 text-sm">Relation</label>
-              <input id="relation" type="text" formControlName="relation"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+              <input
+                id="relation"
+                type="text"
+                formControlName="relation"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+              />
             </div>
             <div>
               <label for="sex" class="font-medium text-slate-300 text-sm">Sex (M/F)</label>
-              <input id="sex" type="text" maxlength="1" formControlName="sex"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+              <input
+                id="sex"
+                type="text"
+                maxlength="1"
+                formControlName="sex"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"
+              />
             </div>
           </div>
         </section>
-        }
-
-        @if (currentStep() === 2) {
+        } @if (currentStep() === 2) {
         <section class="animate-slideInRight" formGroupName="claim">
-          <h2 class="text-xl font-semibold text-slate-200 border-b border-slate-700 pb-3 mb-6 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-purple-500" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <h2
+            class="text-xl font-semibold text-slate-200 border-b border-slate-700 pb-3 mb-6 flex items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 mr-3 text-purple-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
             Section B: Claim Details
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
             <div class="md:col-span-2">
-              <label for="clinicHospitalDoctor" class="font-medium text-slate-300 text-sm">Clinic / Hospital &
-                Doctor</label>
-              <input id="clinicHospitalDoctor" type="text" formControlName="clinicHospitalDoctor"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <label for="clinicHospitalDoctor" class="font-medium text-slate-300 text-sm"
+                >Clinic / Hospital & Doctor</label
+              >
+              <input
+                id="clinicHospitalDoctor"
+                type="text"
+                formControlName="clinicHospitalDoctor"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+              />
             </div>
             <div>
-              <label for="admissionFrom" class="font-medium text-slate-300 text-sm">Admission From</label>
-              <input id="admissionFrom" type="date" formControlName="admissionFrom"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <label for="admissionFrom" class="font-medium text-slate-300 text-sm"
+                >Admission From</label
+              >
+              <input
+                id="admissionFrom"
+                type="date"
+                formControlName="admissionFrom"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+              />
             </div>
             <div>
               <label for="admissionTo" class="font-medium text-slate-300 text-sm">To</label>
-              <input id="admissionTo" type="date" formControlName="admissionTo"
-                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <input
+                id="admissionTo"
+                type="date"
+                formControlName="admissionTo"
+                class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+              />
             </div>
 
             <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4">
-              <div><label for="surgeonFee" class="font-medium text-slate-300 text-sm">Surgeon Fee</label><input
-                  id="surgeonFee" type="number" formControlName="surgeonFee"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <div>
+                <label for="surgeonFee" class="font-medium text-slate-300 text-sm"
+                  >Surgeon Fee</label
+                ><input
+                  id="surgeonFee"
+                  type="number"
+                  formControlName="surgeonFee"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                />
               </div>
-              <div><label for="otCharges" class="font-medium text-slate-300 text-sm">OT Charges</label><input
-                  id="otCharges" type="number" formControlName="otCharges"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <div>
+                <label for="otCharges" class="font-medium text-slate-300 text-sm">OT Charges</label
+                ><input
+                  id="otCharges"
+                  type="number"
+                  formControlName="otCharges"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                />
               </div>
-              <div><label for="anesthesia" class="font-medium text-slate-300 text-sm">Anesthesia</label><input
-                  id="anesthesia" type="number" formControlName="anesthesia"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <div>
+                <label for="anesthesia" class="font-medium text-slate-300 text-sm">Anesthesia</label
+                ><input
+                  id="anesthesia"
+                  type="number"
+                  formControlName="anesthesia"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                />
               </div>
-              <div><label for="consultationFee" class="font-medium text-slate-300 text-sm">Consultation
-                  Fee</label><input id="consultationFee" type="number" formControlName="consultationFee"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <div>
+                <label for="consultationFee" class="font-medium text-slate-300 text-sm"
+                  >Consultation Fee</label
+                ><input
+                  id="consultationFee"
+                  type="number"
+                  formControlName="consultationFee"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                />
               </div>
-              <div><label for="medicineCost" class="font-medium text-slate-300 text-sm">Medicine Cost</label><input
-                  id="medicineCost" type="number" formControlName="medicineCost"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <div>
+                <label for="medicineCost" class="font-medium text-slate-300 text-sm"
+                  >Medicine Cost</label
+                ><input
+                  id="medicineCost"
+                  type="number"
+                  formControlName="medicineCost"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                />
               </div>
-              <div><label for="labTestCost" class="font-medium text-slate-300 text-sm">Lab Test Cost</label><input
-                  id="labTestCost" type="number" formControlName="labTestCost"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <div>
+                <label for="labTestCost" class="font-medium text-slate-300 text-sm"
+                  >Lab Test Cost</label
+                ><input
+                  id="labTestCost"
+                  type="number"
+                  formControlName="labTestCost"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                />
               </div>
-              <div><label for="otherCharges" class="font-medium text-slate-300 text-sm">Other Charges</label><input
-                  id="otherCharges" type="number" formControlName="otherCharges"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <div>
+                <label for="otherCharges" class="font-medium text-slate-300 text-sm"
+                  >Other Charges</label
+                ><input
+                  id="otherCharges"
+                  type="number"
+                  formControlName="otherCharges"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                />
               </div>
-              <div><label for="totalCost" class="font-medium text-slate-300 text-sm">Total Cost</label><input
-                  id="totalCost" type="number" formControlName="totalCost"
-                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm">
+              <div>
+                <label for="totalCost" class="font-medium text-slate-300 text-sm">Total Cost</label
+                ><input
+                  id="totalCost"
+                  type="number"
+                  formControlName="totalCost"
+                  class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
+                />
               </div>
+
+              <!-- //....................file attachment preview and delete....................... -->
+
+              <div class="md:col-span-2">
+                <label class="text-slate-300 text-sm font-medium">Attachments</label>
+
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*,application/pdf"
+                  (change)="onFilesSelected($event)"
+                  class="mt-1 block w-full text-slate-200"
+                />
+
+                <div
+                  class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+                  *ngIf="filePreviews.length"
+                >
+                  <div
+                    *ngFor="let item of filePreviews; let i = index"
+                    class="relative group cursor-pointer"
+                  >
+                    <!-- IMAGE -->
+
+                    <img
+                      *ngIf="item.type === 'image'"
+                      [src]="item.url"
+                      (click)="openFile(item)"
+                      class="w-full h-28 object-cover rounded-lg border border-slate-600 group-hover:opacity-80 transition"
+                    />
+
+                    <!-- PDF -->
+
+                    <div
+                      *ngIf="item.type === 'pdf'"
+                      (click)="openFile(item)"
+                      class="h-28 flex flex-col items-center justify-center border border-slate-600 rounded-lg bg-slate-700 group-hover:bg-slate-600 transition"
+                    >
+                      <svg class="w-10 h-10 text-red-400" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 2h7l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                      </svg>
+
+                      <p class="text-xs text-slate-300 mt-1 truncate w-full text-center px-2">
+                        {{ item.file.name }}
+                      </p>
+                    </div>
+
+                    <!-- DELETE -->
+
+                    <button
+                      type="button"
+                      (click)="removeFile(i)"
+                      class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs opacity-0 group-hover:opacity-100 transition"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- file attached and remove -->
+
+              <!-- <div class="md:col-span-2">
+                <label class="text-slate-300 text-sm font-medium">Attachments</label>
+                <input type="file" multiple accept="image/*,application/pdf" (change)="onFilesSelected($event)" class="mt-1 block w-full text-slate-200">
+                <div class="flex gap-4 flex-wrap mt-3" *ngIf="imagePreviews.length">
+                  <div *ngFor="let img of imagePreviews; let i = index" class="relative">
+                    <img [src]="img" class="w-24 h-24 object-cover rounded border border-slate-500" />
+
+                    <button type="button" (click)="removeFile(i)"
+                      class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-xs">
+                      ✕
+                    </button>
+                  </div>
+                </div>
+              </div> -->
             </div>
 
             <div class="md:col-span-2">
-              <label for="natureOfClaim" class="font-medium text-slate-300 text-sm">Nature of Claim <span
-                  class="text-red-500">*</span></label>
-              <select id="natureOfClaim" formControlName="natureOfClaim"
+              <label for="natureOfClaim" class="font-medium text-slate-300 text-sm"
+                >Nature of Claim <span class="text-red-500">*</span></label
+              >
+              <select
+                id="natureOfClaim"
+                formControlName="natureOfClaim"
                 class="mt-1 block w-full rounded-md border-slate-600 bg-slate-700 text-slate-200 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
-                [class.border-red-500]="isInvalid('natureOfClaim', 'claim')">
+                [class.border-red-500]="isInvalid('natureOfClaim', 'claim')"
+              >
                 <option value="" disabled>Select One</option>
                 <option>OPD</option>
                 <option>Hospitalization</option>
@@ -211,39 +465,53 @@
                 <option>Dread Disease</option>
                 <option>Specialized Investigation</option>
               </select>
-              @if (isInvalid('natureOfClaim', 'claim')) { <p class="text-red-500 text-xs mt-1">Please select the nature
-                of the claim.</p> }
+              @if (isInvalid('natureOfClaim', 'claim')) {
+              <p class="text-red-500 text-xs mt-1">Please select the nature of the claim.</p>
+              }
             </div>
           </div>
         </section>
         }
 
-        
         <!-- Action Buttons -->
-        <div class="mt-10 pt-6 border-t border-slate-700 flex items-center gap-4"
-          [class.justify-end]="currentStep() === 1" [class.justify-between]="currentStep() === 2">
+        <div
+          class="mt-10 pt-6 border-t border-slate-700 flex items-center gap-4"
+          [class.justify-end]="currentStep() === 1"
+          [class.justify-between]="currentStep() === 2"
+        >
           @if(currentStep() === 2) {
-          <button type="button" (click)="prevStep()"
-            class="py-2 px-5 bg-slate-700 text-slate-300 font-semibold rounded-lg shadow-sm hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-all duration-200">
+          <button
+            type="button"
+            (click)="prevStep()"
+            class="py-2 px-5 bg-slate-700 text-slate-300 font-semibold rounded-lg shadow-sm hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-all duration-200"
+          >
             Previous
           </button>
           }
 
           <div class="flex items-center gap-4">
-            <button type="button" (click)="reset()"
-              class="py-2 px-5 bg-slate-700 text-slate-300 font-semibold rounded-lg shadow-sm hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-all duration-200">
+            <button
+              type="button"
+              (click)="reset()"
+              class="py-2 px-5 bg-slate-700 text-slate-300 font-semibold rounded-lg shadow-sm hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-all duration-200"
+            >
               Reset
             </button>
 
             @if(currentStep() === 1) {
-            <button type="button" (click)="nextStep()"
-              class="py-2 px-6 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200">
+            <button
+              type="button"
+              (click)="nextStep()"
+              class="py-2 px-6 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200"
+            >
               Next
             </button>
-            }
-            @if(currentStep() === 2) {
-            <button type="submit" [disabled]="claimForm.invalid"
-              class="py-2 px-6 bg-emerald-500 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+            } @if(currentStep() === 2) {
+            <button
+              type="submit"
+              [disabled]="claimForm.invalid"
+              class="py-2 px-6 bg-emerald-500 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               Submit Claim
             </button>
             }
@@ -254,13 +522,7 @@
   </div>
 </div>
 
-
-
-
-
 <!-- ........................................................................ -->
-
-
 
 <!--
 <main class="main-content">

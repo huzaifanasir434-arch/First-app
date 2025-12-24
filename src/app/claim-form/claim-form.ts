@@ -16,6 +16,7 @@ export class ClaimForm {
   submissionState = signal<'idle' | 'success'>('idle');
   totalAmount = signal(0);
   currentStep = signal(1);
+  filePreviews: FilePreview[] = [];
   totalSteps = 2;
 
   constructor(private fb: FormBuilder) {
@@ -34,21 +35,76 @@ export class ClaimForm {
         sex: ['']
       }),
 
-      claim: this.fb.group({
-        clinicHospitalDoctor: [''],
-        admissionFrom: [''],
-        admissionTo: [''],
-        surgeonFee: ['', [Validators.min(0)]],
-        otCharges: ['', [Validators.min(0)]],
-        anesthesia: ['', [Validators.min(0)]],
-        consultationFee: ['', [Validators.min(0)]],
-        medicineCost: ['', [Validators.min(0)]],
-        labTestCost: ['', [Validators.min(0)]],
-        otherCharges: ['', [Validators.min(0)]],
-        totalCost: ['', [Validators.min(0)]],
-        natureOfClaim: ['', Validators.required]
-      })
-    });
+  claim: this.fb.group({
+    clinicHospitalDoctor: [''],
+    admissionFrom: [''],
+    admissionTo: [''],
+    surgeonFee: ['', [Validators.min(0)]],
+    otCharges: ['', [Validators.min(0)]],
+    anesthesia: ['', [Validators.min(0)]],
+    consultationFee: ['', [Validators.min(0)]],
+    medicineCost: ['', [Validators.min(0)]],
+    labTestCost: ['', [Validators.min(0)]],
+    otherCharges: ['', [Validators.min(0)]],
+    totalCost: ['', [Validators.min(0)]],
+    attachments: this.fb.control<any[]>([]),
+    natureOfClaim: ['', Validators.required]
+  })
+
+});
+//update for view claim
+// Load claimToEdit from localStorage
+  const editRaw = localStorage.getItem('claimToEdit');
+  if (editRaw) {
+    try {
+      const editClaim = JSON.parse(editRaw);
+
+      // Patch form values - adjust as necessary if structure matches formGroup
+      this.claimForm.patchValue(editClaim);
+
+      // For attachments, you might need special handling:
+      if (editClaim.claim?.attachments) {
+        // attachments are File[], but you might have stored only metadata
+        // Here, you have to decide how to handle attachments (e.g., no files on reload)
+        // Maybe clear attachments or show placeholders
+
+        this.claimForm.get('claim.attachments')?.setValue(editClaim.claim.attachments);
+      }
+    } catch (e) {
+      console.error('Failed to load claimToEdit', e);
+    }
+
+    // Remove after loading to prevent loading again accidentally
+    localStorage.removeItem('claimToEdit');
+  }
+
+// Total amount automatically
+
+this.claimForm.get('claim')!.valueChanges.subscribe(values => {
+  const total =
+    (values.surgeonFee || 0) +
+    (values.otCharges || 0) +
+    (values.anesthesia || 0) +
+    (values.consultationFee || 0) +
+    (values.medicineCost || 0) +
+    (values.labTestCost || 0) +
+    (values.otherCharges || 0);
+
+  this.totalAmount.set(total);
+  this.claimForm.get('claim.totalCost')?.setValue(total, { emitEvent: false });
+});
+
+   // Auto-fill from Logged-in Employee
+const empRaw = localStorage.getItem('reguser');
+if (empRaw) {
+  const emp = JSON.parse(empRaw);
+  this.claimForm.patchValue({
+    holder: {
+      employeeName: emp.name,
+      hrEmpId: emp.employeeId
+    }
+  });
+}
   }
 
   nextStep(): void {
@@ -69,6 +125,92 @@ export class ClaimForm {
     }
   }
 
+// new file preview UPDATE DELETE VIEW
+
+onFilesSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (!input.files) return;
+
+  const newFiles = Array.from(input.files);
+
+  // merge with existing files
+  const existingFiles =
+    (this.claimForm.get('claim.attachments')?.value as File[]) || [];
+
+  const mergedFiles = [...existingFiles, ...newFiles];
+  this.claimForm.get('claim.attachments')?.setValue(mergedFiles);
+
+const newPreviews: FilePreview[] = newFiles.map(file => ({
+  file,
+  url: URL.createObjectURL(file),
+  type: file.type.startsWith('image/')
+    ? 'image'
+    : 'pdf'
+}));
+
+
+
+  // immutable update (OnPush)
+  this.filePreviews = [...this.filePreviews, ...newPreviews];
+
+  // reset input so same file can be re-selected
+  input.value = '';
+}
+
+openFile(item: FilePreview) {
+  window.open(item.url, '_blank');
+}
+
+removeFile(index: number) {
+  const files =
+    this.claimForm.get('claim.attachments')?.value as File[];
+
+  const updatedFiles = files.filter((_, i) => i !== index);
+  this.claimForm.get('claim.attachments')?.setValue(updatedFiles);
+
+  URL.revokeObjectURL(this.filePreviews[index].url);
+
+  this.filePreviews = this.filePreviews.filter((_, i) => i !== index);
+}
+
+
+
+// file preview only
+// imagePreviews: string[] = [];
+
+// onFilesSelected(event: Event) {
+//   const input = event.target as HTMLInputElement;
+//   if (!input.files) return;
+
+//   const files = Array.from(input.files);
+//   this.claimForm.get('claim.attachments')?.setValue(files);
+
+//   const previews: string[] = [];
+
+//   files.forEach(file => {
+//     const reader = new FileReader();
+//     reader.onload = () => {
+//       previews.push(reader.result as string);
+
+//       // 🔥 IMPORTANT: create new reference
+//       this.imagePreviews = [...previews];
+//     };
+//     reader.readAsDataURL(file);
+//     console.log('Files:', this.claimForm.get('claim.attachments')?.value);
+// console.log('Previews:', this.imagePreviews);
+//   });
+// }
+
+// removeFile(index: number) {
+//   const files = this.claimForm.get('claim.attachments')?.value as File[];
+
+//   const updatedFiles = files.filter((_, i) => i !== index);
+//   this.claimForm.get('claim.attachments')?.setValue(updatedFiles);
+
+//   this.imagePreviews = this.imagePreviews.filter((_, i) => i !== index);
+// }
+
+
   reset(): void {
     this.claimForm.reset({
         holder: { sex: '' },
@@ -78,12 +220,20 @@ export class ClaimForm {
     this.currentStep.set(1);
   }
 
+
+
   onSubmit(): void {
 
     this.claimForm.markAllAsTouched();
     if (!this.claimForm.valid) {
       return;
     }
+
+    console.log(
+  'Before save:',
+  this.claimForm.get('claim.attachments')?.value
+);
+
 
     const savedData = {
       ...this.claimForm.value,

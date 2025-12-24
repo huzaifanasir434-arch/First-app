@@ -4,7 +4,7 @@
 .view-wrapper {
   width: 100%;
   max-width: 100%;
-  padding: 10px;
+  padding: 20px;
 }
 
 h1 {
@@ -15,7 +15,7 @@ h1 {
 /* Controls */
 .sdiv {
   margin-top: 5px;
-  background-color: rgb(128, 133, 124);
+  background-color: rgb(76, 79, 110);
   color: rgb(10, 10, 10);
   /* padding: 3px 5px; */
   width: fit-content;
@@ -24,23 +24,59 @@ h1 {
 
 /* Button */
 .sdiv button {
-  background: #ff4b4b;
+  background: #409292;
   color: #fff;
   border: none;
-  padding: 6px 12px;
+  padding: 3px 6px;
   border-radius: 4px;
   margin: 10px 10px ;
   cursor: pointer;
 }
 .sdiv button:hover {
-  background: #e22f2f;
+  background: #033744;
 }
+
+/* //new update */
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.actions button {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.edit-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a045;
+}
+
+.delete-btn {
+  background-color: #063b4b;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #053c49;
+}
+
+
+
 
 /* Claims list container */
 .claims-list {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
+  margin: 2px 0;
   overflow-x: auto;    /* Enables horizontal scrolling */
   white-space: nowrap; /* Keep items in a row */
 }

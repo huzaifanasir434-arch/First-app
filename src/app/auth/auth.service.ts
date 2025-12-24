@@ -40,7 +40,7 @@ export class AuthService {
   // Simple fake register: save and mark logged in
   register(name: string, email: string, password: string) {
     const user = { name, email};
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('reguser', JSON.stringify(user));
     this.loggedIn.next(true);
   }
 
